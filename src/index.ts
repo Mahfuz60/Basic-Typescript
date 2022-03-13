@@ -119,7 +119,7 @@ userDetails(5, {
 });
 
 let sayHello = (user: userType) => {
-  console.log(`Hello ${user.age > 50 ? "sir" : "Mr."} ${user.name}`);
+  // console.log(`Hello ${user.age > 50 ? "sir" : "Mr."} ${user.name}`);
 };
 sayHello({
   name: "Taki Kauser",
@@ -138,8 +138,115 @@ let calculate: (a: number, b: number, c: string) => number;
 calculate = (a: number, b: number, c: string) => {
   if (c === "add") {
     return a + b;
-  } else  {
+  } else {
     return a - b;
   }
 };
 console.log(calculate(20, 5, "minus"));
+
+//classes(module system)
+import { player } from "./classes/players.js";
+import { IsPlayer } from "./interfaces/IsPlayer.js";
+
+//interface classes used property
+let sakib: IsPlayer;
+sakib = new player("sakib all hasan", 36, "Bangladesh");
+//
+
+const mashrafi = new player("mashrafi bin mortuza", 39, "bangladesh");
+const babar = new player("babar azom", 26, "pakistan");
+const osman = new player("osman kajha", 29, "australia");
+
+osman.age = 30;
+//private property not be access and modified
+// osman.name = "Md. Osman Kajha";
+
+//readonly property only access not be modified
+// osman.country = "england";
+
+//public property anytime access and modified
+console.log(sakib.country);
+
+console.log(osman.country);
+
+const players: IsPlayer[] = [];
+players.push(babar);
+players.push(osman);
+players.push(mashrafi);
+players.push(sakib);
+
+//interface
+interface recTangleOption {
+  width: number;
+  length: number;
+}
+
+function drawRectangle(options: recTangleOption) {
+  let width = options.width;
+  let length = options.length;
+}
+
+let twoDOptions = {
+  width: 20,
+  length: 30,
+};
+let threeDOptions = {
+  width: 20,
+  length: 30,
+  height: 20,
+};
+drawRectangle(twoDOptions);
+drawRectangle(threeDOptions);
+
+//Generics
+//T detect this type of data
+const addID = <T extends { name: string; age: number }>(obj: T) => {
+  let id = Math.floor(Math.random() * 100);
+  return { ...obj, id };
+};
+let user = addID({
+  name: "Tamim",
+  age: 40,
+  country: "Bangladesh",
+});
+
+console.log(addID(user));
+
+//interface and Generics
+
+interface ApiResponse<T> {
+  status: number;
+  type: string;
+  data: T;
+}
+
+const response1: ApiResponse<string> = {
+  status: 200,
+  type: "good",
+  data: "test case",
+};
+
+console.log(response1);
+
+//ENUMS used Generics
+enum ResponseType {
+  SUCCESS,
+  FAILURE,
+  AUTHENTICATION,
+  FORBIDDEN,
+  ERROR,
+}
+
+interface ApiResponse2<T> {
+  status: number;
+  type: ResponseType;
+  data: T;
+}
+
+const response2: ApiResponse2<string> = {
+  status: 200,
+  type: ResponseType.SUCCESS,
+  data: "authentication",
+};
+
+console.log(response2);

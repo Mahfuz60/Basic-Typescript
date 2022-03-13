@@ -105,12 +105,7 @@ calculate = (a, b, c) => {
     }
 };
 console.log(calculate(20, 5, "minus"));
-//classes(module system)
-import { player } from "./classes/players.js";
-//interface classes used property
-let sakib;
-sakib = new player("sakib all hasan", 36, "Bangladesh");
-//
+const sakib = new player("sakib all hasan", 36, "Bangladesh");
 const mashrafi = new player("mashrafi bin mortuza", 39, "bangladesh");
 const babar = new player("babar azom", 26, "pakistan");
 const osman = new player("osman kajha", 29, "australia");
@@ -127,51 +122,4 @@ players.push(babar);
 players.push(osman);
 players.push(mashrafi);
 players.push(sakib);
-function drawRectangle(options) {
-    let width = options.width;
-    let length = options.length;
-}
-let twoDOptions = {
-    width: 20,
-    length: 30,
-};
-let threeDOptions = {
-    width: 20,
-    length: 30,
-    height: 20,
-};
-drawRectangle(twoDOptions);
-drawRectangle(threeDOptions);
-//Generics
-//T detect this type of data
-const addID = (obj) => {
-    let id = Math.floor(Math.random() * 100);
-    return Object.assign(Object.assign({}, obj), { id });
-};
-let user = addID({
-    name: "Tamim",
-    age: 40,
-    country: "Bangladesh",
-});
-console.log(addID(user));
-const response1 = {
-    status: 200,
-    type: "good",
-    data: "test case",
-};
-console.log(response1);
-//ENUMS used Generics
-var ResponseType;
-(function (ResponseType) {
-    ResponseType[ResponseType["SUCCESS"] = 0] = "SUCCESS";
-    ResponseType[ResponseType["FAILURE"] = 1] = "FAILURE";
-    ResponseType[ResponseType["AUTHENTICATION"] = 2] = "AUTHENTICATION";
-    ResponseType[ResponseType["FORBIDDEN"] = 3] = "FORBIDDEN";
-    ResponseType[ResponseType["ERROR"] = 4] = "ERROR";
-})(ResponseType || (ResponseType = {}));
-const response2 = {
-    status: 200,
-    type: ResponseType.SUCCESS,
-    data: "authentication",
-};
-console.log(response2);
+export {};
